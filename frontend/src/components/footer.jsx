@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
  * Footer component with company info, links, and social media
  * Responsive design with multiple columns on desktop, stacked on mobile
  */
-import '../styles/index.css'
+import '../styles/footer.css'
 function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -16,9 +16,9 @@ function Footer() {
           <div>
             <div className="footer-brand">
               <div className="footer-brand-icon">
-                <span>W</span>
+                <span>TA</span>
               </div>
-              <span className="footer-brand-text">Wine Cellar</span>
+              <span className="footer-brand-text">Taagubothu Adda</span>
             </div>
             <p className="footer-description">
               Discover the world's finest wines from renowned vineyards. We curate exceptional bottles for every
@@ -55,7 +55,7 @@ function Footer() {
             <h3>Quick Links</h3>
             <ul className="footer-links">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/home">Home</Link>
               </li>
               <li>
                 <Link to="/products">Products</Link>

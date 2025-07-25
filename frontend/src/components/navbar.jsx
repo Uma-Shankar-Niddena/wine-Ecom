@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
@@ -8,13 +8,47 @@ import { useNavigate } from "react-router-dom";
  * Navigation component with responsive design
  * Includes mobile hamburger menu and active link highlighting
  */
-function Navbar({cartItems}) {
+function Navbar({ram}) {
   const navigate = useNavigate();
+  /*const [totalItems,setTotalitems]=useState(0)*/
+  const totalItems=ram.length
+  
+    
+ 
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0)
+
+
+
+   
+
+/*
+ 
+useEffect(() => {
+  const stored = localStorage.getItem("cartitems");
+
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    setTotalitems(parsed.length);
+
+  } else {
+    setTotalitems(0); // fallback
+  }
+},[]); // ✅ run only once on mount
+*/
+
+
+ 
+
+  
+   
+ 
+ 
+
+
+
  
 
   // Helper function to check if link is active
@@ -31,16 +65,16 @@ function Navbar({cartItems}) {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo */}
-        <Link to="/" className="navbar-logo">
+        <Link to="/home" className="navbar-logo">
           <div className="navbar-logo-icon">
-            <span>W</span>
+            <span>TA</span>
           </div>
-          <span className="navbar-brand">Wine Cellar</span>
+          <span className="navbar-brand">Taagubothu Adda</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="navbar-nav">
-          <Link to="/" className={`navbar-link ${isActiveLink("/") ? "active" : ""}`}>
+          <Link to="/home" className={`navbar-link ${isActiveLink("/") ? "active" : ""}`}>
             Home
           </Link>
           <Link to="/products" className={`navbar-link ${isActiveLink("/products") ? "active" : ""}`}>

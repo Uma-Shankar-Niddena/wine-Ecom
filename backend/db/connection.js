@@ -2,7 +2,7 @@ const sqlite3 = require("sqlite3").verbose();
 const { open } = require("sqlite");
 const path = require("path");
 
-const dbPath = path.join(__dirname, "../products.db");
+const dbPath = process.env.DATABASE_URL || path.join(__dirname, "../products.db");
 
 const connectDB = async () => {
   return open({

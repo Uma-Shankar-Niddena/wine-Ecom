@@ -6,8 +6,9 @@ const insertData=async()=>{
 
    
 
-
     const isDev = process.env.DEV_MODE === "true";
+
+
 //update category to wine 
 
 await db.run(
@@ -24,6 +25,9 @@ await db.run(`UPDATE products SET inStock=? WHERE category IN (?,?,?,?)`,["1","s
 await db.run(`UPDATE products 
 SET originalPrice = ROUND(price * 1.2, 2)
 WHERE category = 'stuff';`)
+
+///update category soda to water 
+await db.run(`UPDATE products SET category=? WHERE category=?`,["water","soda"])
 
 ///update rating to stuff 
 
@@ -150,6 +154,166 @@ SET rating = CASE name
     ELSE 4.0 -- Default for any missed
 END
 WHERE category = 'water';`)
+
+///update images 
+await db.exec(`UPDATE products
+SET image = CASE name
+
+  WHEN 'Budweiser Magnum' THEN '/images/budweiser22.jpg'
+  WHEN 'Tuborg Strong' THEN '/images/tuborgstrongbeer.jpg'
+  WHEN 'Royal Stag' THEN '/images/Royalstag.webp'
+  WHEN '100 Pipers' THEN '/images/100pipers.jpg'
+  WHEN "McDowell's No.1" THEN '/images/mcdonaldsNo1.jpg'
+  WHEN 'Sula Chenin Blanc' THEN '/images/sula.jpg'
+  WHEN 'Kingfisher Premium' THEN '/images/kinigfisherpremium.jpg'
+  WHEN 'Bira 91 Blonde' THEN '/images/bira.jpg'
+  WHEN 'Amrut Fusion' THEN '/images/amritfusion.jpg'
+  WHEN 'Old Monk' THEN '/images/oldmonk.jpg'
+  WHEN 'Blenders Pride' THEN '/images/blenderspride.jpg'
+  WHEN 'Magic Moments' THEN '/images/magicmoments.jpg'
+  WHEN 'Smirnoff Red' THEN '/images/smirnoff.avif'
+  WHEN 'Hennessy VS' THEN '/images/hennessy.avif'
+  WHEN "Jacob's Creek Shiraz" THEN '/images/jacobs2.jpg'
+  WHEN 'KRSMA Cabernet' THEN '/images/krsma.webp'
+  WHEN 'Carlsberg Elephant' THEN '/images/carlesberg2.jpg'
+  WHEN "Beck's Ice" THEN '/images/becksice2.jpg'
+  WHEN 'Heineken' THEN '/images/heinken2.jpg'
+  WHEN 'Paul John Brilliance' THEN '/images/PaulJohnBrilliance.jpg'
+  WHEN 'Black Dog' THEN '/images/BlackDog.webp'
+  WHEN 'Imperial Blue' THEN '/images/ImperialBlue.webp'
+  WHEN 'Haywards 5000' THEN '/images/Haywards5000.webp'
+  WHEN 'Signature Premium' THEN '/images/SignaturePremium.webp'
+  WHEN 'Royal Challenge' THEN '/images/RoyalChallenge.jpg'
+  WHEN 'Antiquity Blue' THEN '/images/AntiquityBlue.png'
+  WHEN 'Morpheus Brandy' THEN '/images/MorpheusBrandy.webp'
+  WHEN 'Johnnie Walker Red' THEN '/images/redlabel2.jpg'
+  WHEN "Teacher's Highland Cream" THEN '/images/TeachersHighlandCream.webp'
+  WHEN 'White Mischief' THEN '/images/WhiteMischief.jpg'
+
+  -- Stuff (Veg) Products
+  WHEN 'Gongura Pachadi' THEN '/images/gongurapacchadi.jpg'
+  WHEN 'Mirchi Bajji' THEN '/mirapakayabajji.jpg'
+  WHEN 'Sakinalu' THEN '/images/senakailu.jpg'
+  WHEN 'Chegodilu' THEN '/images/chegodilu.jpg'
+  WHEN 'Cheese Platter' THEN '/images/cheeseplatter.jpg'
+  WHEN 'Pesarattu Chips' THEN '/images/pesarattuchips.jpg'
+  WHEN 'Aloogadda Pakodi' THEN '/images/allogaddapakodi.jpg'
+  WHEN 'Stuffed Mushrooms' THEN '/images/stuffedmushroom.jpg'
+  WHEN 'Guntur Chili Poppers' THEN '/images/stuffedmushroom.jpg'
+  WHEN 'Jeedi Pappu Vepudu' THEN '/images/chicken65.jpg'
+  WHEN 'Avocado Salad' THEN '/images/stuffedmushroom.jpg'
+  WHEN 'Mokka Jonna Chaat' THEN '/images/mokkajonnachat.jpg'
+  WHEN 'Paneer Tikka' THEN '/images/pannertikka.jpg'
+  WHEN 'Dosakaya Pachadi' THEN '/images/dosakayapachadi.jpg'
+  WHEN 'Pottu Pachadi' THEN '/images/pottupacchadi.jpg'
+  WHEN 'Bendakaya Vepudu' THEN '/images/bendakayavepudu.jpg'
+  WHEN 'Verusenaga Masala' THEN '/images/verusenagamasala.jpg'
+  WHEN 'Kura Vegetables Skewers' THEN '/images/kuravegitablessk.jpg'
+  WHEN 'Pappadam' THEN '/images/papadalu.jpg'
+  WHEN 'Tamata Pachadi' THEN '/images/tomatopacchadi.jpg'
+  WHEN 'Palakura Pakodi' THEN '/images/ullipayapakodi.jpg'
+  WHEN 'Pandla Platter' THEN '/images/pandlaplatter.jpg'
+  WHEN 'Garlic Bread' THEN '/images/garlicbread.jpg'
+  WHEN 'Mixed Nuts' THEN '/images/mixednuts.jpg'
+  WHEN 'Kheera Perugu' THEN '/images/kheeraperugu.jpg'
+  WHEN 'Ullipaya Pakodi' THEN '/images/ullipayapakodi.jpg'
+  WHEN 'Bruschetta' THEN '/images/Bruchette.jpg'
+  WHEN 'Veg Cutlet' THEN '/images/vegcutlet.jpg'
+  WHEN 'Senaga Pappu Vepudu' THEN '/images/senagapappuvepudu.jpg'
+  WHEN 'Caprese Salad' THEN '/images/capraseslad.jpg'
+  -- Non-Veg Products
+  WHEN 'Hyderabadi Biryani' THEN '/images/Hyderabadbiryani.jpg'
+  WHEN 'Ankapur Kodi Kura' THEN '/images/anakapurkodikura.jpg'
+  WHEN 'Kodi Pulusu' THEN '/images/kodipulusu.jpg'
+  WHEN 'Mamsam Pulusu' THEN '/images/mamsampulusu.jpg'
+  WHEN 'Chinta Chiguru Mamsam' THEN '/images/chintachigurumamsam.jpg'
+  WHEN 'Kodi Bhuna Masala' THEN '/images/kodibhaunmasala.jpg'
+  WHEN 'Boti Kebab' THEN '/images/botikabad.jpg'
+  WHEN 'Paya' THEN '/images/paya.jpg'
+  WHEN 'Haleem' THEN '/images/haleem.jpg'
+  WHEN 'Murgh ka Korma' THEN '/images/murgkakurma.jpg'
+  WHEN 'Kaleja Vepudu' THEN '/images/khalejamasalavepudu.jpg'
+  WHEN 'Ulavacharu' THEN '/images/ulavacharusoup.jpg'
+  WHEN 'Guddu Pulusu' THEN '/images/guddupulusu.jpg'
+  WHEN 'Kodi Vepudu' THEN '/images/kodivepudu.jpg'
+  WHEN 'Mamsam Vepudu' THEN '/images/mamsamvepudu.jpg'
+  WHEN 'Chepala Pulusu' THEN '/images/chapalapulusu.jpg'
+  WHEN 'Chepala Vepudu' THEN '/images/chepalavepudu.jpg'
+  WHEN 'Nalli Nihari' THEN '/images/nallinihari.jpg'
+  WHEN 'Dalcha' THEN '/images/dalcha.jpg'
+  WHEN 'Pattar ka Gosht' THEN '/images/Pattarkagosht.jpg'
+  WHEN 'Marag' THEN '/images/murgkakurma.jpg'
+  WHEN 'Kodi 65' THEN '/images/chicken65.jpg'
+  WHEN 'Mamsam Keema' THEN '/images/mamsamkeema.jpg'
+  WHEN 'Royyala Vepudu' THEN '/images/prawnsfry.jpg'
+  WHEN 'Chakna' THEN '/images/chakna.jpg'
+  WHEN 'Kodi Mandi' THEN '/images/chickenmandi.jpg'
+  WHEN 'Mamsam Mandi' THEN '/images/muttonmandi.jpg'
+  WHEN 'Bheja Vepudu' THEN '/images/brainfry.jpg'
+  WHEN 'Gurda Vepudu' THEN '/images/kidneyfry.jpg'
+  WHEN 'Kodi Kura' THEN '/images/traditionalchickencurry.jpg'
+
+  WHEN 'Bisleri Mineral Water' THEN '/images/bisleri2.jpg'
+  WHEN 'Kinley Water' THEN '/images/KinleyWater.webp'
+  WHEN 'Aquafina Purified Water' THEN '/images/AquafinaPurifiedWater.webp'
+  WHEN 'Himalayan Natural Mineral Water' THEN '/images/HimalayanNaturalMineralWater.jpg'
+  WHEN 'Evian Natural Spring Water' THEN '/images/EvianNaturalSpringWater.jpg'
+  WHEN 'Tata Water Plus' THEN '/images/tatawaterplus.jpg'
+  WHEN 'Bailley Packaged Water' THEN '/images/BailleyWater.webp'
+  WHEN 'San Pellegrino Still Water' THEN '/images/SanPellegrinoStillWater.jpg'
+  WHEN 'Voss Still Water' THEN '/images/vossstillwater.jpg'
+  WHEN 'Patanjali Divya Jal' THEN '/images/patanjalidivyajal.jpg'
+  WHEN 'Oxigen Water' THEN '/images/oxigenwater.jpg'
+  WHEN 'Vedica Himalayan Water' THEN '/images/vidicahimalayawater.jpg'
+  WHEN 'Perrier Still Water' THEN '/images/perrierwater.webp'
+  WHEN 'Fiji Artesian Water' THEN '/images/fijiwater.webp'
+  WHEN 'B Natural Mineral Water' THEN '/images/bnaturalmineralwater.avif'
+  -- Soda Products
+  WHEN 'Thums Up' THEN '/images/thumsup2.jpg'
+  WHEN 'Limca' THEN '/images/limcatin.jpg'
+  WHEN 'Sprite' THEN '/images/sprite.jpg'
+  WHEN 'Schweppes Tonic Water' THEN '/images/scpewers.jpg'
+  WHEN 'Coca-Cola' THEN '/images/cocacola.jpg'
+  WHEN 'Fanta Orange' THEN '/images/fanta2.jpg'
+  WHEN 'Bovonto' THEN '/images/bovonto.png'
+  WHEN 'San Pellegrino Sparkling' THEN '/images/SanPellegrinoStillWater.jpg'
+  WHEN 'Mirinda' THEN '/images/mirinda.jpg'
+  WHEN 'Ginger Ale' THEN '/images/gingerale.jpg'
+  WHEN 'Maaza Mango' THEN '/images/maaza.avif'
+  WHEN 'Appy Fizz' THEN '/images/appyfiz.jpg'
+  WHEN '7Up' THEN '/images/7up.jpg'
+  WHEN 'Pepsi' THEN '/images/pepsi.jpg'
+  WHEN 'Schweppes Ginger Beer' THEN '/images/scpewers.jpg'
+  -- Cigars Products
+  WHEN 'Cohiba Siglo VI' THEN '/images/Cohiba.jpg'
+  WHEN 'Montecristo No. 2' THEN '/images/Montecristo.webp'
+  WHEN 'Romeo y Julieta Churchill' THEN '/images/Romeo.webp'
+  WHEN 'Partagas Serie D No. 4' THEN '/images/Partagas.webp'
+  WHEN 'Davidoff Winston Churchill' THEN '/images/churchill.webp'
+  WHEN 'Arturo Fuente Opus X' THEN '/images/ArturoFuenteOpus.jpg'
+  WHEN 'Padron 1964 Anniversary' THEN '/images/Partagas.webp'
+  WHEN 'Ashton VSG Robusto' THEN '/images/ashton.jpg'
+  WHEN 'H. Upmann Magnum 50' THEN '/images/HUpmann.webp'
+  WHEN 'Rocky Patel Decade' THEN '/images/Rocky.jpg'
+  WHEN 'Gold Flake Kings' THEN '/images/goldflake2.avif'
+  WHEN 'Classic Milds' THEN '/images/classiccigar.jpg'
+  WHEN 'Wills Navy Cut' THEN '/images/willsnavycut.jpg'
+  WHEN 'Charminar' THEN '/images/charminarcigar.jpg'
+  WHEN 'Four Square' THEN '/images/foursquare.jpg'
+  WHEN 'Editions' THEN '/images/editions.jpg'
+  WHEN 'Marlboro Red' THEN '/images/marlboro.png'
+  WHEN 'Bristol' THEN '/images/bristol.jpg'
+  WHEN 'Scissors' THEN '/images/scissors.jpg'
+  WHEN 'Cavanders Gold' THEN '/images/cavanders.png'
+  WHEN 'Panama' THEN '/images/panama.jpg'
+  WHEN 'Capstan' THEN '/images/capstan.png'
+  WHEN 'Gold Flake Lights' THEN '/images/goldflakelights.jpeg'
+  WHEN 'Red & White' THEN '/images/redwhite.png'
+  WHEN 'Chancellor' THEN '/images/chancalor.jpg'
+  ELSE '/images/carlsberg.webp'
+  
+END ;`)
+
 
  if (isDev){
         let  isExistoo= await db.all(`SELECT * FROM products`)

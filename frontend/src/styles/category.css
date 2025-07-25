@@ -9,6 +9,10 @@
 
 
 }
+.imagicon{
+    height:70px;
+    width:70px;
+}
 .each-category{
     display: flex;
     flex-direction: column;

@@ -1,0 +1,130 @@
+POST ${import.meta.env.VITE_API_URL}/signup
+Content-Type:application/json 
+
+{
+    "username":"namovenkatesaya",
+    "email":"venkatesa@gmail.com",
+    "password":"shankar123"
+
+}
+
+
+### 
+GET ${import.meta.env.VITE_API_URL}/users
+
+
+### GET username by userId 
+### ///on login
+
+POST ${import.meta.env.VITE_API_URL}/login 
+Content-Type:application/json 
+
+{
+    "username":"kan",
+    "password":"kiran1234"
+}
+### insert data into orders table 
+POST ${import.meta.env.VITE_API_URL}/cart/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE3NTMwODg2MjR9.r2Yl-R4tT2olW15SZ9Qi15tiW7FK79jNCVy1qFk3FJU
+Content-Type: application/json 
+
+{
+    "productId":1,
+    "quantity":1
+
+    
+}
+
+### GET all products 
+GET ${import.meta.env.VITE_API_URL}/api/products
+
+### get cartitems 
+GET ${import.meta.env.VITE_API_URL}/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE3NTMwODg2MjR9.r2Yl-R4tT2olW15SZ9Qi15tiW7FK79jNCVy1qFk3FJU
+Content-Type: application/json 
+
+### delete cart item with cartId
+DELETE ${import.meta.env.VITE_API_URL}/cart/remove/40
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3NTI4MTQ5NzN9.1PZR8WZhnJ2l7Kg6tjfT3lGUC92nXf44kVTf5CF3pq0
+
+
+### place order 
+
+POST ${import.meta.env.VITE_API_URL}/orders/place-order 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE3NTMwODg2MjR9.r2Yl-R4tT2olW15SZ9Qi15tiW7FK79jNCVy1qFk3FJU
+Content-Type: application/json 
+
+{
+    "totalamount":190
+}
+
+### get specific order with orderId 
+GET ${import.meta.env.VITE_API_URL}/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE3NTMwOTg2ODV9.hq3Eqwm5z-4BPgGCU7vKweyQyy4kUiYJnx-3Bp9lZvE
+### get all the order by the user
+
+GET ${import.meta.env.VITE_API_URL}/orders/place-order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3NTI5MjY3MjZ9.mm4JfxJCjNePYpRY7pXjCKIRTFv9FZBU5PR8j-AvlHQ
+
+
+### admin credits 
+
+POST ${import.meta.env.VITE_API_URL}/admin/signup 
+Content-Type: application/json 
+
+{
+    "username":"shankar_0077",
+    "password":"uma@1234"
+}
+
+### admin login 
+POST ${import.meta.env.VITE_API_URL}/admin/signIn 
+Content-Type: application/json
+
+{
+    "username":"shankar_0077",
+    "password":"uma@1234"
+}
+
+### all orders details like which product they ordereed all that from admin 
+GET ${import.meta.env.VITE_API_URL}/admin/checkout-Data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoyLCJpYXQiOjE3NTMxMDY3ODN9.Q8Bn-ssKz9DWltStY9kIfNtY_JFLJAJD8KjUZlZGqKM
+### place order 
+POST  ${import.meta.env.VITE_API_URL}/place-order/add-checkout-details
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE3NTMwOTY4NDl9.S_DOopo1bKtzZMx2Pxr_6CfnTB8adPx50JJjPmZ_kT0
+
+
+{
+ 
+  "userName": "shankar",
+  "phoneNumber": "987434210",
+  "deliveryAddress": "3-56, Near raju Street, Andhra Pradesh",
+  "paymentMethod": "Cash on Delivery",
+  "deliveryTime": "2025-07-19 1:30",
+  "specialInstructions": "Please call before delivery.",
+  "items": [
+    {
+      "name": "chicken 65",
+      "qty": 1,
+      "price": 205.00
+    },
+    {
+      "name": "thums up",
+      "qty": 1,
+      "price": 20.00
+    }
+  ],
+  "subtotal": 275.00,
+  "deliveryFee": 0.00,
+  "taxes": 15.60,
+  "total": 290.60
+}
+
+    
+### get all order at admin view
+GET ${import.meta.env.VITE_API_URL}/admin/all-orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoyLCJpYXQiOjE3NTMxMDY3ODN9.Q8Bn-ssKz9DWltStY9kIfNtY_JFLJAJD8KjUZlZGqKM
+### delete all cartitems after placing order!
+DELETE  ${import.meta.env.VITE_API_URL}/cart/remove-all-items 
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE0LCJpYXQiOjE3NTI5MzExMDZ9.YJAsi1U63f3ftI_tpSUjIlSCYHwPhEtz7EIqe9mzrp0

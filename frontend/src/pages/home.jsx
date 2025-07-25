@@ -5,7 +5,7 @@ import ProductCard from "../components/product-card"
  * Home page component with hero section and featured products
  * Showcases the wine collection with call-to-action elements
  */
-function Home() {
+function Home({addToCart}) {
   // Featured products data
   const featuredProducts = [
     {
@@ -13,7 +13,7 @@ function Home() {
       name: "Château Margaux 2018",
       price: 299.99,
       originalPrice: 349.99,
-      image: "/placeholder.svg?height=300&width=200",
+      image: "/chatea.jpg",
       description: "An exceptional Bordeaux with complex flavors and elegant finish.",
       vintage: "2018",
       region: "Bordeaux, France",
@@ -25,7 +25,7 @@ function Home() {
       id: 2,
       name: "Dom Pérignon Vintage",
       price: 189.99,
-      image: "/placeholder.svg?height=300&width=200",
+      image: "/dom.jpg?height=300&width=200",
       description: "Prestigious champagne with fine bubbles and refined taste.",
       vintage: "2012",
       region: "Champagne, France",
@@ -37,7 +37,7 @@ function Home() {
       id: 3,
       name: "Opus One 2019",
       price: 425.0,
-      image: "/placeholder.svg?height=300&width=200",
+      image: "/opus.jpg?height=300&width=200",
       description: "Iconic Napa Valley blend of Cabernet Sauvignon and Merlot.",
       vintage: "2019",
       region: "Napa Valley, USA",
@@ -53,7 +53,7 @@ function Home() {
       <section className="hero">
         <div className="hero-content">
           <h1 className="hero-title">Discover Exceptional Wines</h1>
-          <p className="hero-subtitle">Curated collection of premium wines from the world's finest vineyards</p>
+          <p className="hero-subtitle">Premium wines, curated with taste and delivered with care.</p>
           <div className="hero-buttons">
             <Link to="/products" className="btn btn-primary">
               Shop Now
@@ -137,7 +137,8 @@ function Home() {
 
           <div className="products-grid" style={{ marginBottom: "48px" }}>
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              
+              <ProductCard key={product.id} product={product} addToCart={addToCart}/>
             ))}
           </div>
 

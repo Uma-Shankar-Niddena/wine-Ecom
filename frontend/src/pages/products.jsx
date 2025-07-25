@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import ProductCard from "../components/product-card"
 import "../styles/category.css"
+import LoadingAnimation from '../components/LoadingAnimation'
 
 function Products({ addToCart, handleAddToCart }) {
   const [allProducts, setAllProducts] = useState([])
@@ -85,14 +86,17 @@ function Products({ addToCart, handleAddToCart }) {
 
   useEffect(() => {
   const fetchProducts=async ()=>{
+    
       try{
          
         ///products data 
-        let fetchedData=await fetch("http://localhost:3001/api/products")
+       
+        let fetchedData=await fetch(`${import.meta.env.VITE_API_URL}/api/products`)
         let data=await fetchedData.json()
         console.log("api data from backend")
         console.log(data)
-        return (data)
+      
+        return (data.message)
       }
       catch{
            console.log("error to get data from server")
@@ -172,6 +176,7 @@ function Products({ addToCart, handleAddToCart }) {
   // Handle category click
   const clickedOnWineSection = (cat = "all") => {
     setCategory(cat)
+    
   
     switch (cat.toLowerCase()) {
       case "wine":
@@ -179,6 +184,7 @@ function Products({ addToCart, handleAddToCart }) {
         setPlaceHolder("Search wines...")
         break
       case "stuff":
+         
         setTopHead(categoryHeadings["stuff"])
         setPlaceHolder("Search Stuff...")
         break
@@ -210,7 +216,7 @@ function Products({ addToCart, handleAddToCart }) {
       <div className="number-of-products">
         {[ "Wine", "Stuff", "Water", "cigar"].map((cat) => (
           <div className="each-category" key={cat}>
-            <img src="#" alt={cat} />
+            <img src='/2.jpg' alt={cat} className="imagicon" />
             <p className="each-text">
               <a href="#" onClick={() => clickedOnWineSection(cat.toLowerCase())}>{cat}</a>
             </p>
@@ -220,8 +226,9 @@ function Products({ addToCart, handleAddToCart }) {
 
       {/* Main Section */}
       <div style={{ minHeight: "100vh", minWidth: "100vw", backgroundColor: "#f9fafb" }}>
-        <div className="products-header">
+        <div className="products-header inline-block" >
           <div className="container">
+            <LoadingAnimation cate={selectCategory}/>
             <h1 className="products-title">{eachCatTopHead.title}</h1>
             <p className="products-subtitle">{eachCatTopHead.subtitle}</p>
           </div>

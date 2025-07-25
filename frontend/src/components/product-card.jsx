@@ -15,7 +15,7 @@ function ProductCard({ product, addToCart, handleAddToCart }) {
 
 
 
-  const formatPrice = (price) => `$${price.toFixed(2)}`
+  const formatPrice = (price) => `₹${price.toFixed(2)}`
 
   const renderStars = (rating) => {
     const stars = []
@@ -55,7 +55,7 @@ function ProductCard({ product, addToCart, handleAddToCart }) {
       {/* Product Image */}
       <div className="product-image-container">
       <img
-          src={"vite.svg" || "/placeholder.svg"}
+          src={image}
           alt={name}
           className="product-image"
           onError={(e) => (e.target.src = "/placeholder.svg")}
@@ -99,7 +99,7 @@ function ProductCard({ product, addToCart, handleAddToCart }) {
           disabled={!inStock}
           onClick={() =>{
               addToCart(product)
-             handleAddToCart(product)
+           
           }
             
           

@@ -92,9 +92,9 @@ Admin Login → View all placed orders
 
 ---
 
-## 📸 Screenshots (Optional)
+## 📸 Screenshots 
 
-_Add some screenshots of your project here for better presentation._
+
 
 ---
 

@@ -31,7 +31,7 @@ function AdminLogin() {
   
     
     try{
-      const url=`${import.meta.env.VITE_API_URL}/admin/signIn`
+      const url="http://localhost:3001/admin/signIn"
       const options={
         method:"POST",
         credentials:"include",

@@ -16,12 +16,12 @@ GET ${import.meta.env.VITE_API_URL}/users
 ### GET username by userId 
 ### ///on login
 
-POST ${import.meta.env.VITE_API_URL}/login 
+POST http://localhost:3001/login 
 Content-Type:application/json 
 
 {
-    "username":"kan",
-    "password":"kiran1234"
+    "username":"ram",
+    "password":"ram1234"
 }
 ### insert data into orders table 
 POST ${import.meta.env.VITE_API_URL}/cart/add

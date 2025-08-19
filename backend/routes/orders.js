@@ -19,7 +19,7 @@ router.post("/place-order",authMiddleware,async (req,res)=>{
          
 
         if (cartItems.length==0){
-            res.send("Cart is Empty! Add Items")
+            res.json("Cart is Empty! Add Items")
 
         }
         else{
@@ -53,7 +53,7 @@ router.post("/place-order",authMiddleware,async (req,res)=>{
         
     }
     catch(error){
-        res.send(error)
+        res.json(error)
     }
 })
 
@@ -79,11 +79,11 @@ router.get('/',middleware,async(req,res)=>{
 
              WHERE orders.user_id=?`,[userid])
        
-        res.send(result)
+        res.json(result)
 
     }
     catch(error){
-        res.send(error.message)
+        res.json(error.message)
     }
 })
 

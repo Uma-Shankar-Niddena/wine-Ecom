@@ -13,11 +13,11 @@ router.get('/checkout-Data',admiddleware,async(req,res)=>{
         
   const allorders=await db.all(`SELECT * FROM admin_checking_orders`)
       
-         res.send(allorders)
+         res.json({message:allorders})
         
      }
      catch(error){
-        res.send(error.message)
+        res.json({error:error.message})
      }
 })
 
@@ -70,13 +70,13 @@ ORDER BY orders.created_at DESC;
 
 `)
    
-      res.send(response)
+      res.json(response)
 
 
     
    }
    catch(err){
-      res.send(err.message)
+      res.json(err.message)
    }
 })
 module.exports=router;

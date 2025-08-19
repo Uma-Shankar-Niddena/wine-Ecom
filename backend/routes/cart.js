@@ -105,10 +105,10 @@ router.delete('/remove-all-items',middleware,async(req,res)=>{
         db=await connectDB()
         const userid=req.user.userId 
         await db.run(`DELETE FROM cart WHERE userId=?`,[userid]) 
-        res.send("all cartitems deleted!")
+        res.json("all cartitems deleted!")
     }
     catch(err){
-        res.send(err.message)
+        res.json({error:err.message})
     }
 })
 

@@ -15,15 +15,15 @@ router.post('/signup',async(req,res)=>{
          const hashpass=await bcrypt.hash(password,10)
          if (!isExist){
             await db.run(`INSERT INTO admins(username,password) VALUES(?,?)`,[username,hashpass])
-            res.send("Admin Account created!")
+            res.json("Admin Account created!")
 
          }
          else{
-            res.send("admins table lo already data vundi ra ungamma!!")
+            res.json("admins table lo already data vundi ra ungamma!!")
          }
      }
      catch(error){
-        res.send(error.message)
+        res.json(error.message)
      }
 })
 

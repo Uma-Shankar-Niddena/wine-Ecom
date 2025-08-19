@@ -23,8 +23,9 @@ const AdminOrders = () => {
     
 
     const fetchOrders = async () => {
+      const url="http://localhost:3001/admin/checkout-Data"
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/checkout-Data`,{
+        const response = await fetch(url,{
             method:"GET",
             credentials:"include",
             headers:{

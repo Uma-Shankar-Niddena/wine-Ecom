@@ -33,7 +33,7 @@ useEffect(()=>{
   localStorage.setItem("cartitems",JSON.stringify(cartItems))
 
   const getIntial=async()=>{
-    const url='${import.meta.env.VITE_API_URL}/cart' 
+    const url='http://localhost:3001/cart' 
   const options={
     method:"GET",
     credentials:"include"
@@ -85,7 +85,7 @@ useEffect(()=>{
    
 
      try{
-      const url='${import.meta.env.VITE_API_URL}/cart/add'
+      const url='http://localhost:3001/cart/add'
       const options={
           method:"POST",
           headers:{
@@ -140,7 +140,7 @@ const removeItem=async(removecartItem)=>{
     const id=removecartItem
 
     try{
-      const url=`${import.meta.env.VITE_API_URL}/cart/remove/${id}`
+      const url="http://localhost:3001/cart/remove/${id}"
       const options={
         method:"DELETE",
         credentials:"include",
@@ -157,7 +157,7 @@ const removeItem=async(removecartItem)=>{
       }
         ///get updated cartitems 
         
-     const url2=`${import.meta.env.VITE_API_URL}/cart` 
+     const url2="http://localhost:3001/cart"
      const options2={
        method:"GET",
        credentials:"include",
@@ -186,6 +186,7 @@ const removeItem=async(removecartItem)=>{
   const location = useLocation(); 
   const hideNavbar = location.pathname === "/" || location.pathname==='/login' || location.pathname==='/admin-login' || location.pathname==="/admin" ;
   const hidefooter=location.pathname==='/' || location.pathname==='/login' || location.pathname==='/admin-login' || location.pathname==='/admin'; // hide on sign in/up page
+
 
 
   return (

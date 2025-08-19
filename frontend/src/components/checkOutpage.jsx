@@ -43,7 +43,7 @@ const Checkoutpage=()=> {
  const fetchCartItems=async()=>{
  
   try{
-     const url=`${import.meta.env.VITE_API_URL}/cart`
+     const url="http://localhost:3001/cart"
      const options={
          method:"GET",
          credentials:"include",
@@ -82,67 +82,82 @@ useEffect(()=>{
  
   const addOrdersItems=async()=>{
  
-     try{   
-      setOrderplaced(true)
-          
-      ///adding to orders table what he ordered?  
 
-      const whatHeordered=await fetch(`${import.meta.env.VITE_API_URL}/orders/place-order`,{
-        method:"POST",
-        credentials:"include",
-         headers:{
-                    "Content-Type":"application/json"
-                },
-        body:JSON.stringify({total})
-      })
-
-      
-      
-            
-      
-      ///adding details of ordersbill where should to be deliever!
-    
-        
-       
-
-       const checkouturl=`${import.meta.env.VITE_API_URL}/place-order/add-checkout-details`
-            const options={
-                method:"POST",
-                credentials:"include",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify(orderDatabyUser)
-            } 
-              const responsefromdb=await fetch(checkouturl,options)
-
-            ///remove cartItems after placing order 
-
-         
-            const url2=`${import.meta.env.VITE_API_URL}/cart/remove-all-items`
-            const removeCartitems=await fetch(url2,{
-                method:"DELETE",
-                credentials:"include" 
-            }) 
-            console.log(removeCartitems)
-            console.log("order placed!")
-
-            setTimeout(() => {
-              setOrderplaced(false)
-          
-
-                navigation('/home')
-
-            }, 3500);
-            
-
-
-            
+       if(!deliveryAddress){
+          alert("Add delievery Address To Deliver!")
         }
-        catch(err){
+        else if (!phonenumber){
+          alert("Add Contact Number!")
+        }
+
+        else{
+           try{   
+        setOrderplaced(true)
+            
+        ///adding to orders table what he ordered?  
+
+        const whatHeordered=await fetch("http://localhost:3001/orders/place-order",{
+          method:"POST",
+          credentials:"include",
+          headers:{
+                      "Content-Type":"application/json"
+                  },
+          body:JSON.stringify({total})
+        })
+
+        
+        
+              
+        
+        ///adding details of ordersbill where should to be deliever!
+      
+          
+        
+
+        const checkouturl="http://localhost:3001/place-order/add-checkout-details"
+              const options={
+                  method:"POST",
+                  credentials:"include",
+                  headers:{
+                      "Content-Type":"application/json"
+                  },
+                  body:JSON.stringify(orderDatabyUser)
+              } 
+                const responsefromdb=await fetch(checkouturl,options)
+
+              ///remove cartItems after placing order 
+
+          
+              const url2="http://localhost:3001/cart/remove-all-items"
+              const removeCartitems=await fetch(url2,{
+                  method:"DELETE",
+                  credentials:"include" 
+              }) 
+              console.log(removeCartitems)
+              console.log("order placed!")
+
+              setTimeout(() => {
+                setOrderplaced(false)
+            
+
+                  navigation('/home')
+
+              }, 3500);
+
+        
+              
+            
+
+          
+
+              
+          }
+          catch(err){
             console.log(err.message)
         }
 
+        }
+     
   }
 
 
@@ -179,10 +194,11 @@ useEffect(()=>{
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
                 className="address-input"
+                required
               />
               <div className="contact-row">
-                <input type="text" placeholder="Phone Number" onChange={(e)=>setPhonenumber(e.target.value)} className="contact-input" />
-                <input type="text" placeholder="Your Name" onChange={(e)=>setUsername(e.target.value)} className="contact-input" />
+                <input type="text" placeholder="Phone Number" onChange={(e)=>setPhonenumber(e.target.value)} required className="contact-input" />
+                <input type="text" placeholder="Your Name" onChange={(e)=>setUsername(e.target.value)} required className="contact-input" />
               </div>
             </div>
 
@@ -218,6 +234,7 @@ useEffect(()=>{
                   📱 Digital Wallet
                 </button>
                 <button
+                  defaultChecked
                   className={`payment-option ${selectedPayment === "cash" ? "selected" : ""}`}
                   onClick={() => setSelectedPayment("cash")}
                 >
@@ -272,10 +289,13 @@ useEffect(()=>{
                 <span>₹{total.toFixed(2)}</span>
               </div>
             </div>
+            
 
             <button className="place-order-btn" onClick={() =>addOrdersItems() }>
               Place Order • ₹{total.toFixed(2)}
             </button>
+
+
           </div>
         </div>
       </div>)}

@@ -31,12 +31,12 @@ function UserLogin() {
     setIsLoading(true)
     const userDetails={username,password}
     try{
-      const url=`${import.meta.env.VITE_API_URL}/login`
+      const url="http://localhost:3001/login"
       const options={
         method:"POST",
         credentials: "include",
         headers:{
-        "Content-Type":"application/json",
+        "Content-Type":"application/json"
         },
         
         body:JSON.stringify(userDetails)

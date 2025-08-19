@@ -53,13 +53,13 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: "Incorrect password" });
         }
 
-        const jwttoken = jwt.sign({ userId: isaUser.id },process.env.JWT_SECRET_ACCESS_LOGIN);
+        const jwttoken = jwt.sign({ userId: isaUser.id },SECRET_KEY);
 
-        res.cookie("token", jwttoken, {
-            httpOnly: false,
-            secure: false,
-            sameSite: "Strict"
-        });
+     res.cookie("token", jwttoken, {
+    httpOnly: true,   // better security
+    secure: false,    // true if using https
+    sameSite: "None"  // required for cross-origin cookies
+});
 
         return res.json({ message: "Login successful! Welcome back.", jwtToken: jwttoken });
 
@@ -75,10 +75,10 @@ router.get('/users',async(req,res)=>{
     try{
         db=await connectDB()
         const alluserss=await db.all(`SELECT * FROM users`)
-        res.send(alluserss)
+        res.json(alluserss)
     }
     catch(error){
-        res.send(error.message)
+        res.json(error.message)
     }
 })
 

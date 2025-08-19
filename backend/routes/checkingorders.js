@@ -18,17 +18,17 @@ router.get('/:id',middleware,async (req,res)=>{
 
     
         if (!results){
-            res.send("There is no orders at!")
+            res.json("There is no orders at!")
         }
        else{
               const orders= await db.all(`SELECT order_items.*,products.* FROM order_items JOIN products ON order_items.product_id=products.id WHERE order_items.order_id=? `,[orderid])
     
-       res.send(orders)
+       res.json(orders)
        } 
       
     }
     catch(error){
-        res.send(error.message)
+        res.json(error.message)
     }
 })
 

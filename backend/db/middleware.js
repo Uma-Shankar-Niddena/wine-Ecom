@@ -8,7 +8,7 @@ const middleware=async (req,res,next)=>{
     
   
     if (!token){
-        res.send("Acess denied!")
+        res.json("Acess denied!")
     }
     try{
           const isToken=jwt.verify(token,SECRET_KEY)

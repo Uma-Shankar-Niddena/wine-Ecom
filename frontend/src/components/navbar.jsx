@@ -12,11 +12,10 @@ function Navbar({ram}) {
   const navigate = useNavigate();
   /*const [totalItems,setTotalitems]=useState(0)*/
   const totalItems=ram.length
+ 
   
     
  
-
-
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
 

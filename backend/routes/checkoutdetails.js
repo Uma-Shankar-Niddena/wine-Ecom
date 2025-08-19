@@ -44,7 +44,7 @@ router.post('/add-checkout-details',middleware,async (req, res)=>{
   total
   ])
     
-   res.send(query)
+   res.json(query)
 
     }
     catch(err){

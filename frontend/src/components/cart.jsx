@@ -17,7 +17,7 @@ const CartComponent = ({increaseQuantity, decreaseQuantity }) => {
  const fetchCartItems=async()=>{
   setLoading(true)
   try{
-     const url=`${import.meta.env.VITE_API_URL}/cart`
+     const url="http://localhost:3001/cart"
      const options={
          method:"GET",
          credentials:"include",
@@ -57,7 +57,7 @@ const removeItem=async(removecartItem)=>{
     const id=removecartItem
 
     try{
-      const url=`${import.meta.env.VITE_API_URL}/cart/remove/${id}`
+      const url="http://localhost:3001/cart/remove/${id}"
       const options={
         method:"DELETE",
         credentials:"include",

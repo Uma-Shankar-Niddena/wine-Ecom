@@ -118,16 +118,18 @@ useEffect(()=>{
 
 
   const increaseQuantity = (id) => {
-    setCartItems((items) =>
-      items.map((item) =>
+    setCartItems((cartitems) =>
+      cartitems.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decreaseQuantity = (id) => {
-    setCartItems((items) =>
-      items.map((item) =>
+
+
+    setCartItems((cartItems) =>
+      cartItems.map((item) =>
         item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
